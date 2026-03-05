@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thema 02 &ndash; Digital Sales | Matchplan 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
+:root {
+    --gut-blue:#00518e;--gut-bright:#0094f0;--gut-mid:#007ecc;
+    --gut-dark:#122331;--gut-dark2:#1f3241;--gut-deep:#083c69;
+    --gut-red:#DC052B;--gut-gold:#EBBC4E;--gut-gold-light:#fbf2dc;
+    --gut-light:#E5EDF3;--gut-light2:#f8fbfd;--gut-bg:var(--gut-light);
+    --g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g300:#cbd5e1;
+    --g400:#94a3b8;--g500:#64748b;--g600:#475569;--g700:#334155;
+    --g800:#1e293b;--g900:#0f172a;
+    --shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
+    --shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
+    --shadow-xl:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);
+    --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--g100);color:var(--g800);line-height:1.6}
+
+.page-header{background:linear-gradient(135deg,var(--gut-dark),var(--gut-deep));color:#fff;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;position:sticky;top:0;z-index:100}
+.page-header-left{display:flex;align-items:center;gap:1.5rem}
+.back-link{color:rgba(255,255,255,.5);text-decoration:none;font-size:.85rem;font-weight:500;display:flex;align-items:center;gap:.4rem;padding:.35rem .75rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);transition:all .2s}
+.back-link:hover{color:#fff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08)}
+.page-header-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900}
+.page-header-title span{color:var(--gut-gold)}
+.page-header-meta{font-size:.8rem;color:rgba(255,255,255,.6)}
+.page-header-meta strong{color:rgba(255,255,255,.85)}
+
+.theme-section{max-width:900px;margin:2rem auto;padding:0 2rem}
+.theme-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--g200)}
+.theme-header{padding:2rem 2.5rem;position:relative;overflow:hidden}
+.theme-header::after{content:'';position:absolute;top:0;right:0;width:200px;height:100%;background:linear-gradient(135deg,transparent,rgba(255,255,255,.1))}
+.theme-number-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.2);padding:.3rem .8rem;border-radius:6px;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:1px;text-transform:uppercase;margin-bottom:.75rem}
+.theme-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:#fff;margin-bottom:.3rem;position:relative;z-index:1}
+.theme-trainer{color:rgba(255,255,255,.75);font-size:.9rem;position:relative;z-index:1}
+.theme-trainer strong{color:#fff;font-weight:600}
+
+.goal-banner{display:flex;align-items:stretch;border-bottom:1px solid var(--g200)}
+.goal-main{flex:1;padding:1.5rem 2.5rem;display:flex;align-items:center;gap:1rem}
+.goal-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.goal-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--g400);margin-bottom:.2rem}
+.goal-value{font-size:1.3rem;font-weight:800;color:var(--g900)}
+.goal-sidebar{background:var(--g50);padding:1.5rem 2rem;border-left:1px solid var(--g200);min-width:240px}
+.goal-sidebar .goal-label{margin-bottom:.5rem}
+.goal-sidebar ul{list-style:none;font-size:.85rem;color:var(--g600)}
+.goal-sidebar li{padding:.2rem 0 .2rem 1rem;position:relative}
+.goal-sidebar li::before{content:'\203A';position:absolute;left:0;color:var(--g400);font-weight:700}
+
+.section{padding:1.5rem 2.5rem;border-bottom:1px solid var(--g100)}
+.section:last-child{border-bottom:none}
+.section-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+.section-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.section-title{font-size:.95rem;font-weight:700;color:var(--g800)}
+.section-subtitle{font-size:.75rem;color:var(--g400);font-weight:500}
+
+.taktik-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem}
+.taktik-item{background:var(--g50);border:1px solid var(--g200);border-radius:8px;padding:.85rem 1rem;display:flex;gap:.75rem;align-items:flex-start;transition:all .15s}
+.taktik-item:hover{border-color:var(--g300);background:#fff}
+.taktik-bullet{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0;margin-top:1px}
+.taktik-text{font-size:.88rem;color:var(--g700);line-height:1.5}
+.taktik-text strong{color:var(--g900);font-weight:600}
+
+.training-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:8px;overflow:hidden;border:1px solid var(--g200)}
+.training-table thead th{background:var(--gut-dark2);color:#fff;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:.75rem 1rem;text-align:left}
+.training-table tbody tr{border-bottom:1px solid var(--g100)}
+.training-table tbody tr:last-child{border-bottom:none}
+.training-table tbody tr:nth-child(even){background:var(--g50)}
+.training-table td{padding:.75rem 1rem;font-size:.88rem;color:var(--g700)}
+.training-table td:first-child{font-weight:600;color:var(--g900)}
+.deadline-badge{display:inline-flex;align-items:center;gap:.3rem;background:var(--gut-gold-light);color:#92600a;padding:.2rem .6rem;border-radius:4px;font-size:.8rem;font-weight:600;white-space:nowrap}
+
+.review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem}
+.review-item{background:var(--gut-light2);border:1px solid rgba(0,81,142,.15);border-radius:8px;padding:.85rem 1rem;text-align:center}
+.review-frequency{font-size:1.1rem;font-weight:800;color:var(--gut-blue);margin-bottom:.2rem}
+.review-what{font-size:.8rem;color:var(--g600)}
+
+.kpi-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.75rem}
+.kpi-pill{background:var(--g100);border:1px solid var(--g200);padding:.3rem .75rem;border-radius:20px;font-size:.78rem;color:var(--g600);font-weight:500}
+
+.foto-section{max-width:900px;margin:2rem auto;padding:0 2rem}
+.foto-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--g200)}
+.foto-header{padding:1.25rem 2rem;border-bottom:1px solid var(--g100);display:flex;align-items:center;gap:.75rem}
+.foto-header-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;background:var(--g100);color:var(--g600)}
+.foto-header-text{font-size:.95rem;font-weight:700;color:var(--g800)}
+.foto-header-sub{font-size:.75rem;color:var(--g400);font-weight:500}
+.foto-body{padding:1.5rem 2rem;text-align:center}
+.foto-body img{max-width:100%;height:auto;border-radius:8px;border:1px solid var(--g200);box-shadow:var(--shadow);cursor:pointer;transition:transform .3s,box-shadow .3s}
+.foto-body img:hover{transform:scale(1.01);box-shadow:var(--shadow-xl)}
+.foto-caption{margin-top:.75rem;font-size:.78rem;color:var(--g400);font-style:italic}
+
+.lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:1000;cursor:zoom-out;align-items:center;justify-content:center;padding:2rem}
+.lightbox.active{display:flex}
+.lightbox img{max-width:95%;max-height:95vh;border-radius:8px;box-shadow:0 0 60px rgba(0,0,0,.5)}
+.lightbox-close{position:absolute;top:1.5rem;right:1.5rem;color:#fff;font-size:2rem;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.1);transition:background .2s;border:none}
+.lightbox-close:hover{background:rgba(255,255,255,.2)}
+
+.doc-footer{max-width:900px;margin:2rem auto;padding:1.5rem 2rem;text-align:center;color:var(--g400);font-size:.8rem}
+.doc-footer .divider{width:60px;height:2px;background:var(--g300);margin:0 auto 1rem;border-radius:1px}
+
+@media print{body{background:#fff}.page-header{position:static;padding:.75rem 1.5rem}.theme-section,.foto-section{margin:1rem auto;padding:0 1rem}.theme-card,.foto-card{box-shadow:none;border:1px solid #ddd}.lightbox{display:none!important}.back-link{display:none}}
+@media(max-width:768px){.goal-banner{flex-direction:column}.goal-sidebar{border-left:none;border-top:1px solid var(--g200)}.taktik-grid{grid-template-columns:1fr}.page-header{flex-direction:column;text-align:center;position:static}.page-header-left{flex-direction:column;gap:.5rem}}
+
+.theme-2 .theme-header{background:linear-gradient(135deg,#0094f0,#007ecc)}.theme-2 .taktik-bullet{background:#007ecc;color:#fff}.theme-2 .goal-icon{background:#e8f4fd;color:#007ecc}.theme-2 .section-icon{background:#e8f4fd;color:#007ecc}</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a href="../" class="back-link">&larr; &Uuml;bersicht</a>
+    <div class="page-header-title">Matchplan <span>2026</span></div>
+  </div>
+  <div class="page-header-meta"><strong>G.U.T. BIRK Kempten</strong> &middot; Klausurtagung 05.&ndash;06. M&auml;rz 2026</div>
+</div>
+
+<div class="theme-section">
+  <div class="theme-card theme-2">
+    <div class="theme-header">
+      <div class="theme-number-badge">Thema 02</div>
+      <div class="theme-title">Digital Sales</div>
+      <div class="theme-trainer">Trainer: <strong>Linda Rehle</strong> (Digital Coach)</div>
+    </div>
+
+    <div class="goal-banner">
+      <div class="goal-main">
+        <div class="goal-icon">&#127919;</div>
+        <div>
+          <div class="goal-label">Ergebnisziel 2026</div>
+          <div class="goal-value">Online-Quote um 3% erh&ouml;hen</div>
+        </div>
+      </div>
+      <div class="goal-sidebar">
+        <div class="goal-label">Rahmenbedingungen</div>
+        <ul><li>CRM-Quote steigern</li><li>Zentrale Kampagnen aufsetzen</li><li>Exklusiv-Marken = DB erh&ouml;hen</li></ul>
+      </div>
+    </div>
+
+    <div class="section"><div class="section-header"><div class="section-icon">&#128202;</div><div><div class="section-title">Kennzahlen im Blick</div><div class="section-subtitle">KPIs f&uuml;r die Erfolgsmessung</div></div></div><div class="kpi-row"><span class="kpi-pill">Kunden spezifisch erreichen</span><span class="kpi-pill">Erreichbarkeit Newsletter</span><span class="kpi-pill">Zustellrate Newsletter</span><span class="kpi-pill">Umsatz durch Verkaufsf&ouml;rderung</span><span class="kpi-pill">Klickrate</span><span class="kpi-pill">Online-Quote</span><span class="kpi-pill">Exklusiv-Marken-Anteil</span></div></div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">&#9917;</div>
+        <div><div class="section-title">Taktiktafel</div><div class="section-subtitle">Beeinflussbare Aktivit&auml;ten &amp; Hebel</div></div>
+      </div>
+      <div class="taktik-grid"><div class="taktik-item"><div class="taktik-bullet">1</div><div class="taktik-text"><strong>1x/Monat Newsletter</strong> versenden (Aktion + Information)</div></div><div class="taktik-item"><div class="taktik-bullet">2</div><div class="taktik-text"><strong>8 zentrale Kampagnen</strong> pro Jahr umsetzen</div></div><div class="taktik-item"><div class="taktik-bullet">3</div><div class="taktik-text"><strong>1x/Monat OP-Schulung</strong> durchf&uuml;hren (2x2 Stunden)</div></div><div class="taktik-item"><div class="taktik-bullet">4</div><div class="taktik-text"><strong>5 CRM-Leads pro Woche</strong> qualifizieren und bearbeiten</div></div><div class="taktik-item"><div class="taktik-bullet">5</div><div class="taktik-text"><strong>Neukunden &uuml;ber Homepage</strong> gewinnen, Homepageberater einsetzen</div></div><div class="taktik-item"><div class="taktik-bullet">6</div><div class="taktik-text"><strong>CRM-Daten pflegen:</strong> Anwesenheit abgleichen, Productfeed aktuell halten</div></div><div class="taktik-item"><div class="taktik-bullet">7</div><div class="taktik-text"><strong>3 Online-Kunden je VIM/VAM</strong> gezielt ansprechen, die k&uuml;rzlich online bestellt haben</div></div><div class="taktik-item"><div class="taktik-bullet">8</div><div class="taktik-text"><strong>Top 40 Kunden</strong> gezielt mit digitalen Angeboten versorgen</div></div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">&#128203;</div>
+        <div><div class="section-title">Trainingsplan</div><div class="section-subtitle">Konkrete n&auml;chste Schritte</div></div>
+      </div>
+      <table class="training-table">
+        <thead><tr><th style="width:40%">Was?</th><th style="width:30%">Wer?</th><th style="width:30%">Bis Wann?</th></tr></thead>
+        <tbody><tr><td>OP-Schulung (Online-Plattform)</td><td>Linda</td><td><span class="deadline-badge">&#128197; 30. April</span></td></tr><tr><td>VTB-Schulung Kasching</td><td>VIM / VAM</td><td><span class="deadline-badge">&#128197; Ende Juli</span></td></tr><tr><td>Newsletter &amp; Markt verbessern</td><td>Linda</td><td><span class="deadline-badge">&#128197; Bis Jahresende</span></td></tr><tr><td>CRM abgleichen &amp; pflegen</td><td>Linda / VKL / Phil</td><td><span class="deadline-badge">&#128197; Monatsende (lfd.)</span></td></tr><tr><td>Bis Jahresende Gesamtkonzept erstellen</td><td>Linda</td><td><span class="deadline-badge">&#128197; Dez. 2026</span></td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">&#128200;</div>
+        <div><div class="section-title">Spielstandsanzeige</div><div class="section-subtitle">Review-Rhythmus &amp; Erfolgsmessung</div></div>
+      </div>
+      <div class="review-grid"><div class="review-item"><div class="review-frequency">1x / Monat</div><div class="review-what">VKL / OG / PMS Review</div></div><div class="review-item"><div class="review-frequency">1x / Quartal</div><div class="review-what">Teilnahme ZVK-Teamgespr&auml;ch</div></div><div class="review-item"><div class="review-frequency">Regelm&auml;&szlig;ig</div><div class="review-what">Teilnahme VAM-Jour fixe</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="foto-section">
+  <div class="foto-card">
+    <div class="foto-header">
+      <div class="foto-header-icon">&#128247;</div>
+      <div>
+        <div class="foto-header-text">Fotodokumentation</div>
+        <div class="foto-header-sub">Original-Poster von der Klausurtagung &ndash; Zum Vergr&ouml;&szlig;ern klicken</div>
+      </div>
+    </div>
+    <div class="foto-body">
+      <img src="foto-Digital-Sales.jpeg" alt="Poster: Digital Sales" onclick="openLightbox()" loading="lazy">
+      <div class="foto-caption">Ergebnis-Poster &bdquo;Digital Sales&ldquo; &ndash; Klausurtagung Matchplan 2026, G.U.T. BIRK Kempten</div>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img src="foto-Digital-Sales.jpeg" alt="Poster: Digital Sales">
+</div>
+
+<div class="doc-footer">
+  <div class="divider"></div>
+  <p><strong>Matchplan 2026</strong> &ndash; Klausurtagung G.U.T. BIRK Kempten</p>
+  <p>Kempten, 05.&ndash;06. M&auml;rz 2026 &middot; Moderation: Yannick Hildebrandt (Eggers und Partner)</p>
+</div>
+
+<script>
+function openLightbox(){document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden'}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox()})
+</script>
+</body>
+</html>
