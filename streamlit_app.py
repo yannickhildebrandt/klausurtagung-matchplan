@@ -240,6 +240,7 @@ def inject_css():
     st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
+    * { font-family: 'Inter', sans-serif; }
 
     /* Hide default streamlit chrome */
     #MainMenu, footer, header {visibility: hidden;}
@@ -551,7 +552,7 @@ def inject_css():
         .hero-banner h1 { font-size: 2rem; }
     }
     </style>
-    """ % CI)
+    """ % CI, unsafe_allow_html=True)
 
 
 # ─── Dashboard View ──────────────────────────────────────────
