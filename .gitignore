@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.env
+Dokumentation/Einzelsteckbriefe/_generate.py
+Dokumentation/Einzelsteckbriefe/*.html
+Dokumentation/Matchplan-2026-Themensteckbriefe.html
+Dokumentation/*.xlsx
+*.xlsx
+Poster-Birk-Kempen.pdf
