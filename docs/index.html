@@ -269,6 +269,10 @@
         }
         .card-scoreboard:hover { color: var(--gut-blue); background: var(--gut-light); }
         .card-scoreboard .sb-icon { font-size: .85rem; }
+        .card-scoreboard .ampel-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--g200); background: var(--g200); margin-left: auto; transition: all .3s; }
+        .card-scoreboard .ampel-dot.rot { background: #DC052B; border-color: #DC052B; box-shadow: 0 0 6px rgba(220,5,43,.4); }
+        .card-scoreboard .ampel-dot.gelb { background: #F59E0B; border-color: #F59E0B; box-shadow: 0 0 6px rgba(245,158,11,.4); }
+        .card-scoreboard .ampel-dot.gruen { background: #16A34A; border-color: #16A34A; box-shadow: 0 0 6px rgba(22,163,74,.4); }
         .theme-card { text-decoration: none; color: inherit; }
 
         /* ====== 6 COLOR THEMES (CI-Palette) ====== */
@@ -372,7 +376,7 @@
                     <div class="card-stat"><strong>7</strong> Taktik-Ma&szlig;nahmen &middot; <strong>1</strong> Trainingsschritt</div>
                     <div class="card-cta">Steckbrief &rarr;</div>
                 </div>
-                <a href="Scoreboards/01-DB-Starkes-Verkaufen.html" class="card-scoreboard" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand &rarr;</a>
+                <a href="Scoreboards/01-DB-Starkes-Verkaufen.html" class="card-scoreboard" data-thema="thema-01" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand <span class="ampel-dot"></span></a>
             </div>
 
             <div class="theme-card color-2" onclick="location.href='Einzelsteckbriefe/02-Digital-Sales.html'">
@@ -397,7 +401,7 @@
                     <div class="card-stat"><strong>8</strong> Taktik-Ma&szlig;nahmen &middot; <strong>5</strong> Trainingsschritte</div>
                     <div class="card-cta">Steckbrief &rarr;</div>
                 </div>
-                <a href="Scoreboards/02-Digital-Sales.html" class="card-scoreboard" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand &rarr;</a>
+                <a href="Scoreboards/02-Digital-Sales.html" class="card-scoreboard" data-thema="thema-02" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand <span class="ampel-dot"></span></a>
             </div>
 
             <div class="theme-card color-3" onclick="location.href='Einzelsteckbriefe/03-ELEMENTS-Vertriebskonzept.html'">
@@ -421,7 +425,7 @@
                     <div class="card-stat"><strong>8</strong> Taktik-Ma&szlig;nahmen &middot; <strong>5</strong> Trainingsschritte</div>
                     <div class="card-cta">Steckbrief &rarr;</div>
                 </div>
-                <a href="Scoreboards/03-ELEMENTS-Vertriebskonzept.html" class="card-scoreboard" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand &rarr;</a>
+                <a href="Scoreboards/03-ELEMENTS-Vertriebskonzept.html" class="card-scoreboard" data-thema="thema-03" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand <span class="ampel-dot"></span></a>
             </div>
 
             <div class="theme-card color-4" onclick="location.href='Einzelsteckbriefe/04-Neue-VAM-Gebiete.html'">
@@ -445,7 +449,7 @@
                     <div class="card-stat"><strong>11</strong> Taktik-Ma&szlig;nahmen &middot; <strong>6</strong> Trainingsschritte</div>
                     <div class="card-cta">Steckbrief &rarr;</div>
                 </div>
-                <a href="Scoreboards/04-Neue-VAM-Gebiete.html" class="card-scoreboard" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand &rarr;</a>
+                <a href="Scoreboards/04-Neue-VAM-Gebiete.html" class="card-scoreboard" data-thema="thema-04" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand <span class="ampel-dot"></span></a>
             </div>
 
             <div class="theme-card color-5" onclick="location.href='Einzelsteckbriefe/05-Vermarktung-Waermeerzeuger.html'">
@@ -470,7 +474,7 @@
                     <div class="card-stat"><strong>7</strong> Taktik-Ma&szlig;nahmen &middot; <strong>6</strong> Trainingsschritte</div>
                     <div class="card-cta">Steckbrief &rarr;</div>
                 </div>
-                <a href="Scoreboards/05-Vermarktung-Waermeerzeuger.html" class="card-scoreboard" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand &rarr;</a>
+                <a href="Scoreboards/05-Vermarktung-Waermeerzeuger.html" class="card-scoreboard" data-thema="thema-05" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand <span class="ampel-dot"></span></a>
             </div>
 
             <div class="theme-card color-6" onclick="location.href='Einzelsteckbriefe/06-Vertrieb-im-ZVK.html'">
@@ -494,7 +498,7 @@
                     <div class="card-stat"><strong>6</strong> Taktik-Ma&szlig;nahmen &middot; <strong>7</strong> Trainingsschritte</div>
                     <div class="card-cta">Steckbrief &rarr;</div>
                 </div>
-                <a href="Scoreboards/06-Vertrieb-im-ZVK.html" class="card-scoreboard" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand &rarr;</a>
+                <a href="Scoreboards/06-Vertrieb-im-ZVK.html" class="card-scoreboard" data-thema="thema-06" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand <span class="ampel-dot"></span></a>
             </div>
 
         </div>
@@ -506,5 +510,30 @@
         <p>Kempten, 05.&ndash;06. M&auml;rz 2026 &middot; Moderation: Yannick Hildebrandt (Eggers und Partner)</p>
     </div>
 
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+firebase.initializeApp({
+    apiKey: "AIzaSyD6a1HPbZ1tk3aHTTDv-4haWYvyMc3sv0k",
+    authDomain: "birk-matchplan-2026.firebaseapp.com",
+    databaseURL: "https://birk-matchplan-2026-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "birk-matchplan-2026",
+    storageBucket: "birk-matchplan-2026.firebasestorage.app",
+    messagingSenderId: "258712110779",
+    appId: "1:258712110779:web:6faab29baf358410b48b9e"
+});
+var db = firebase.database();
+
+// Live-Ampel fuer jede Kachel laden
+document.querySelectorAll('.card-scoreboard[data-thema]').forEach(function(link) {
+    var thema = link.getAttribute('data-thema');
+    var dot = link.querySelector('.ampel-dot');
+    db.ref('scoreboards/' + thema + '/ampel').on('value', function(snap) {
+        var color = snap.val();
+        dot.className = 'ampel-dot';
+        if (color) dot.classList.add(color);
+    });
+});
+</script>
 </body>
 </html>
