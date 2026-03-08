@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scoreboard &ndash; Thema 01: DB Starkes Verkaufen | Matchplan 2026</title>
+<title>Scoreboard &ndash; Thema 03: ELEMENTS Vertriebskonzept | Matchplan 2026</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
 :root {
@@ -37,7 +37,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 .scoreboard-section{max-width:900px;margin:2rem auto;padding:0 2rem}
 
 /* Theme header */
-.theme-header{background:linear-gradient(135deg,var(--gut-blue),var(--gut-deep));border-radius:var(--radius) var(--radius) 0 0;padding:2rem 2.5rem;position:relative;overflow:hidden}
+.theme-header{background:linear-gradient(135deg,#5a8a1e,#3d6612);border-radius:var(--radius) var(--radius) 0 0;padding:2rem 2.5rem;position:relative;overflow:hidden}
 .theme-header::after{content:'';position:absolute;top:0;right:0;width:200px;height:100%;background:linear-gradient(135deg,transparent,rgba(255,255,255,.1))}
 .theme-number-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.2);padding:.3rem .8rem;border-radius:6px;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:1px;text-transform:uppercase;margin-bottom:.75rem}
 .theme-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:#fff;margin-bottom:.3rem;position:relative;z-index:1}
@@ -127,9 +127,9 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 
 <div class="scoreboard-section">
   <div class="theme-header">
-    <div class="theme-number-badge">Scoreboard &middot; Thema 01</div>
-    <div class="theme-title">DB &ndash; Starkes Verkaufen</div>
-    <div class="theme-subtitle">Trainer: <strong>Andr&eacute; Kleefeld</strong> &middot; Ziel: DB-Steigerung um +1 Prozentpunkt</div>
+    <div class="theme-number-badge">Scoreboard &middot; Thema 03</div>
+    <div class="theme-title">ELEMENTS Vertriebskonzept</div>
+    <div class="theme-subtitle">Trainer: <strong>Christian Zens / Florian Schropp</strong> &middot; Ziel: ELEMENTS-Umsatz um 10% steigern</div>
   </div>
 
   <div class="scoreboard-card">
@@ -153,7 +153,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
         <div class="progress-stat-label">Laufende Ziele</div>
       </div>
       <div class="progress-stat">
-        <div class="progress-stat-value" id="checks-progress">0 / 8</div>
+        <div class="progress-stat-value" id="checks-progress">0 / 4</div>
         <div class="progress-stat-label">Einmalaufw&auml;nde erledigt</div>
       </div>
     </div>
@@ -169,10 +169,10 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
       </div>
       <div class="metric-list">
 
-        <div class="metric-item" data-key="m1" data-target="12">
+        <div class="metric-item" data-key="m1" data-target="24">
           <div class="metric-info">
-            <div class="metric-name">DB-Turnier-Runden durchgef&uuml;hrt</div>
-            <div class="metric-target">Ziel: <strong>12</strong> (alle 4 Wochen)</div>
+            <div class="metric-name">Tandemtermine durchgef&uuml;hrt</div>
+            <div class="metric-target">Ziel: <strong>24</strong> (2/Monat)</div>
             <div class="metric-progress"><div class="metric-progress-bar" style="width:0%"></div></div>
           </div>
           <div class="metric-controls">
@@ -182,10 +182,10 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
           </div>
         </div>
 
-        <div class="metric-item" data-key="m2" data-target="48">
+        <div class="metric-item" data-key="m2" data-target="24">
           <div class="metric-info">
-            <div class="metric-name">W&ouml;chentliche Jour fixes (Andr&eacute;)</div>
-            <div class="metric-target">Ziel: <strong>48</strong> (w&ouml;chentlich)</div>
+            <div class="metric-name">Handwerkerfr&uuml;hst&uuml;ck/Stammtisch durchgef&uuml;hrt</div>
+            <div class="metric-target">Ziel: <strong>24</strong> (2x/Monat)</div>
             <div class="metric-progress"><div class="metric-progress-bar" style="width:0%"></div></div>
           </div>
           <div class="metric-controls">
@@ -195,10 +195,23 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
           </div>
         </div>
 
-        <div class="metric-item" data-key="m3" data-target="12">
+        <div class="metric-item" data-key="m3" data-target="24">
           <div class="metric-info">
-            <div class="metric-name">DWH-Schulungen durchgef&uuml;hrt</div>
-            <div class="metric-target">Ziel: <strong>12</strong></div>
+            <div class="metric-name">Baustellentermine/Besuche pro Badverk&auml;ufer</div>
+            <div class="metric-target">Ziel: <strong>24</strong> (2/Monat)</div>
+            <div class="metric-progress"><div class="metric-progress-bar" style="width:0%"></div></div>
+          </div>
+          <div class="metric-controls">
+            <button class="metric-btn minus" onclick="changeMetric(this,-1)">&minus;</button>
+            <div class="metric-value">0</div>
+            <button class="metric-btn" onclick="changeMetric(this,1)">+</button>
+          </div>
+        </div>
+
+        <div class="metric-item" data-key="m4" data-target="2">
+          <div class="metric-info">
+            <div class="metric-name">Auftragsquote-Schulungen</div>
+            <div class="metric-target">Ziel: <strong>2</strong> (1x/Halbjahr)</div>
             <div class="metric-progress"><div class="metric-progress-bar" style="width:0%"></div></div>
           </div>
           <div class="metric-controls">
@@ -224,42 +237,22 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 
         <div class="check-item" data-key="c1" onclick="toggleCheck(this)">
           <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
-          <div class="check-text"><strong>DB-Taskforce gr&uuml;nden</strong> &ndash; Auftakt 15.04.2026</div>
+          <div class="check-text"><strong>Jour fixes in den Standorten</strong> etablieren</div>
         </div>
 
         <div class="check-item" data-key="c2" onclick="toggleCheck(this)">
           <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
-          <div class="check-text"><strong>DWH-Quoten auswerten</strong> &ndash; LA, LS, online</div>
+          <div class="check-text"><strong>Arbeitsweisen optimieren</strong> (Terminkalender)</div>
         </div>
 
         <div class="check-item" data-key="c3" onclick="toggleCheck(this)">
           <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
-          <div class="check-text"><strong>Kundenanalyse durchf&uuml;hren</strong> &ndash; Marke &amp; Exklusiv bei Kundenansprache forcieren</div>
+          <div class="check-text"><strong>Feierabendtalk-Format</strong> aufsetzen</div>
         </div>
 
         <div class="check-item" data-key="c4" onclick="toggleCheck(this)">
           <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
-          <div class="check-text"><strong>ABEX-Platzierungen pr&uuml;fen</strong></div>
-        </div>
-
-        <div class="check-item" data-key="c5" onclick="toggleCheck(this)">
-          <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
-          <div class="check-text"><strong>Konditionsanalyse</strong> &ndash; Nettopreise &amp; Rahmenangebote anpassen, E-Plus Kalkulation pr&uuml;fen</div>
-        </div>
-
-        <div class="check-item" data-key="c6" onclick="toggleCheck(this)">
-          <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
-          <div class="check-text"><strong>DB-Ranking erstellen</strong> &ndash; nach Produkten und Kunden</div>
-        </div>
-
-        <div class="check-item" data-key="c7" onclick="toggleCheck(this)">
-          <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
-          <div class="check-text"><strong>Servicebros&uuml;re erstellen</strong> &ndash; mit personenbezogenen Bildern</div>
-        </div>
-
-        <div class="check-item" data-key="c8" onclick="toggleCheck(this)">
-          <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
-          <div class="check-text"><strong>DWH-Vorlagen erstellen</strong></div>
+          <div class="check-text"><strong>Exklusiv-Lieferanten:</strong> Bewusstsein schaffen, Angebotsvorlagen anpassen</div>
         </div>
 
       </div>
@@ -289,7 +282,7 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var db = firebase.database();
-var REF_KEY = 'scoreboards/thema-01';
+var REF_KEY = 'scoreboards/thema-03';
 var dbRef = db.ref(REF_KEY);
 
 // --- State Management ---
@@ -358,6 +351,7 @@ function changeMetric(btn, delta) {
 
 function renderMetric(item, value, target) {
     item.querySelector('.metric-value').textContent = value;
+    if (target === 0) return;
     var pct = Math.min(100, Math.round((value / target) * 100));
     var bar = item.querySelector('.metric-progress-bar');
     bar.style.width = pct + '%';
@@ -378,16 +372,19 @@ function toggleCheck(el) {
 
 // --- Summary ---
 function updateSummary(state) {
-    // Metrics
+    // Metrics – only average those with a target > 0
     var items = document.querySelectorAll('.metric-item');
     var totalPct = 0;
+    var countWithTarget = 0;
     items.forEach(function(item) {
         var key = item.getAttribute('data-key');
         var target = parseInt(item.getAttribute('data-target'));
+        if (target === 0) return;
         var val = (state.metrics && state.metrics[key]) || 0;
         totalPct += Math.min(100, Math.round((val / target) * 100));
+        countWithTarget++;
     });
-    var avgPct = items.length ? Math.round(totalPct / items.length) : 0;
+    var avgPct = countWithTarget ? Math.round(totalPct / countWithTarget) : 0;
     document.getElementById('metrics-progress').textContent = avgPct + '%';
 
     // Checks
