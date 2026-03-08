@@ -273,31 +273,72 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
   <p>Klausurtagung 05.&ndash;06. M&auml;rz 2026 &middot; Moderation: Yannick Hildebrandt (Eggers und Partner)</p>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
-var STORAGE_KEY = 'scoreboard-01-db';
+// --- Firebase Setup ---
+var firebaseConfig = {
+    apiKey: "AIzaSyD6a1HPbZ1tk3aHTTDv-4haWYvyMc3sv0k",
+    authDomain: "birk-matchplan-2026.firebaseapp.com",
+    databaseURL: "https://birk-matchplan-2026-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "birk-matchplan-2026",
+    storageBucket: "birk-matchplan-2026.firebasestorage.app",
+    messagingSenderId: "258712110779",
+    appId: "1:258712110779:web:6faab29baf358410b48b9e"
+};
+firebase.initializeApp(firebaseConfig);
+var db = firebase.database();
+var REF_KEY = 'scoreboards/thema-01';
+var dbRef = db.ref(REF_KEY);
 
-function loadState() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e) { return {}; }
-}
+// --- State Management ---
+var currentState = {};
+
 function saveState(state) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    currentState = state;
+    dbRef.set(state);
+}
+
+// --- Render from state ---
+function renderAll(state) {
+    currentState = state || {};
+
+    // Ampel
+    var btns = document.querySelectorAll('.ampel-btn');
+    btns.forEach(function(b) {
+        if (state.ampel && b.getAttribute('data-color') === state.ampel) {
+            b.classList.add('active'); b.classList.remove('inactive');
+        } else {
+            b.classList.remove('active'); b.classList.add('inactive');
+        }
+    });
+
+    // Metrics
+    document.querySelectorAll('.metric-item').forEach(function(item) {
+        var key = item.getAttribute('data-key');
+        var target = parseInt(item.getAttribute('data-target'));
+        var val = (state.metrics && state.metrics[key]) || 0;
+        renderMetric(item, val, target);
+    });
+
+    // Checks
+    document.querySelectorAll('.check-item').forEach(function(ci) {
+        var key = ci.getAttribute('data-key');
+        var done = state.checks && state.checks[key];
+        ci.classList.toggle('done', !!done);
+    });
+
+    updateSummary(state);
 }
 
 // --- Ampel ---
 function setAmpel(btn) {
     var color = btn.getAttribute('data-color');
-    var state = loadState();
-    var btns = document.querySelectorAll('.ampel-btn');
-    // Toggle: if already active, deactivate
+    var state = Object.assign({}, currentState);
     if (state.ampel === color) {
         state.ampel = null;
-        btns.forEach(function(b) { b.classList.remove('active'); b.classList.add('inactive'); });
     } else {
         state.ampel = color;
-        btns.forEach(function(b) {
-            if (b.getAttribute('data-color') === color) { b.classList.add('active'); b.classList.remove('inactive'); }
-            else { b.classList.remove('active'); b.classList.add('inactive'); }
-        });
     }
     saveState(state);
 }
@@ -306,15 +347,12 @@ function setAmpel(btn) {
 function changeMetric(btn, delta) {
     var item = btn.closest('.metric-item');
     var key = item.getAttribute('data-key');
-    var target = parseInt(item.getAttribute('data-target'));
-    var state = loadState();
+    var state = Object.assign({}, currentState);
     if (!state.metrics) state.metrics = {};
     var current = (state.metrics[key] || 0) + delta;
     if (current < 0) current = 0;
     state.metrics[key] = current;
     saveState(state);
-    renderMetric(item, current, target);
-    updateSummary();
 }
 
 function renderMetric(item, value, target) {
@@ -331,17 +369,14 @@ function renderMetric(item, value, target) {
 // --- Checks ---
 function toggleCheck(el) {
     var key = el.getAttribute('data-key');
-    var state = loadState();
+    var state = Object.assign({}, currentState);
     if (!state.checks) state.checks = {};
     state.checks[key] = !state.checks[key];
-    el.classList.toggle('done', state.checks[key]);
     saveState(state);
-    updateSummary();
 }
 
 // --- Summary ---
-function updateSummary() {
-    var state = loadState();
+function updateSummary(state) {
     // Metrics
     var items = document.querySelectorAll('.metric-item');
     var totalPct = 0;
@@ -364,36 +399,11 @@ function updateSummary() {
     document.getElementById('checks-progress').textContent = doneCount + ' / ' + checkItems.length;
 }
 
-// --- Init ---
-function init() {
-    var state = loadState();
-
-    // Ampel
-    if (state.ampel) {
-        document.querySelectorAll('.ampel-btn').forEach(function(b) {
-            if (b.getAttribute('data-color') === state.ampel) { b.classList.add('active'); b.classList.remove('inactive'); }
-            else { b.classList.remove('active'); b.classList.add('inactive'); }
-        });
-    }
-
-    // Metrics
-    document.querySelectorAll('.metric-item').forEach(function(item) {
-        var key = item.getAttribute('data-key');
-        var target = parseInt(item.getAttribute('data-target'));
-        var val = (state.metrics && state.metrics[key]) || 0;
-        renderMetric(item, val, target);
-    });
-
-    // Checks
-    document.querySelectorAll('.check-item').forEach(function(ci) {
-        var key = ci.getAttribute('data-key');
-        if (state.checks && state.checks[key]) ci.classList.add('done');
-    });
-
-    updateSummary();
-}
-
-init();
+// --- Realtime Listener: auto-updates when anyone changes data ---
+dbRef.on('value', function(snapshot) {
+    var state = snapshot.val() || {};
+    renderAll(state);
+});
 </script>
 </body>
 </html>
