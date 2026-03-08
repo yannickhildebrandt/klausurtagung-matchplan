@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scoreboard &ndash; Thema 01: DB Starkes Verkaufen | Matchplan 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
+:root {
+    --gut-blue:#00518e;--gut-bright:#0094f0;--gut-mid:#007ecc;
+    --gut-dark:#122331;--gut-dark2:#1f3241;--gut-deep:#083c69;
+    --gut-red:#DC052B;--gut-gold:#EBBC4E;--gut-gold-light:#fbf2dc;
+    --gut-light:#E5EDF3;--gut-light2:#f8fbfd;--gut-bg:var(--gut-light);
+    --g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g300:#cbd5e1;
+    --g400:#94a3b8;--g500:#64748b;--g600:#475569;--g700:#334155;
+    --g800:#1e293b;--g900:#0f172a;
+    --shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
+    --shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
+    --shadow-xl:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);
+    --radius:12px;
+    --ampel-rot:#DC052B;--ampel-gelb:#F59E0B;--ampel-gruen:#16A34A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--g100);color:var(--g800);line-height:1.6}
+
+/* Header */
+.page-header{background:linear-gradient(135deg,var(--gut-dark),var(--gut-deep));color:#fff;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;position:sticky;top:0;z-index:100}
+.page-header-left{display:flex;align-items:center;gap:1.5rem}
+.back-link{color:rgba(255,255,255,.5);text-decoration:none;font-size:.85rem;font-weight:500;display:flex;align-items:center;gap:.4rem;padding:.35rem .75rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);transition:all .2s}
+.back-link:hover{color:#fff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08)}
+.page-header-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900}
+.page-header-title span{color:var(--gut-gold)}
+.page-header-meta{font-size:.8rem;color:rgba(255,255,255,.6)}
+.page-header-meta strong{color:rgba(255,255,255,.85)}
+
+/* Main container */
+.scoreboard-section{max-width:900px;margin:2rem auto;padding:0 2rem}
+
+/* Theme header */
+.theme-header{background:linear-gradient(135deg,var(--gut-blue),var(--gut-deep));border-radius:var(--radius) var(--radius) 0 0;padding:2rem 2.5rem;position:relative;overflow:hidden}
+.theme-header::after{content:'';position:absolute;top:0;right:0;width:200px;height:100%;background:linear-gradient(135deg,transparent,rgba(255,255,255,.1))}
+.theme-number-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.2);padding:.3rem .8rem;border-radius:6px;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:1px;text-transform:uppercase;margin-bottom:.75rem}
+.theme-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:#fff;margin-bottom:.3rem;position:relative;z-index:1}
+.theme-subtitle{color:rgba(255,255,255,.7);font-size:.9rem;position:relative;z-index:1}
+
+/* Scoreboard card */
+.scoreboard-card{background:#fff;border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--g200);border-top:none}
+
+/* Ampel section */
+.ampel-section{padding:1.5rem 2.5rem;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.ampel-label{font-size:.95rem;font-weight:700;color:var(--g800)}
+.ampel-sublabel{font-size:.75rem;color:var(--g500);font-weight:400}
+.ampel-buttons{display:flex;gap:.5rem}
+.ampel-btn{width:48px;height:48px;border-radius:50%;border:3px solid var(--g200);cursor:pointer;transition:all .2s;position:relative;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.ampel-btn:hover{transform:scale(1.1)}
+.ampel-btn.rot{background:var(--ampel-rot);border-color:var(--ampel-rot)}
+.ampel-btn.gelb{background:var(--ampel-gelb);border-color:var(--ampel-gelb)}
+.ampel-btn.gruen{background:var(--ampel-gruen);border-color:var(--ampel-gruen)}
+.ampel-btn.inactive{opacity:.25;filter:grayscale(.5)}
+.ampel-btn.active{opacity:1;filter:none;box-shadow:0 0 0 4px rgba(0,0,0,.1)}
+
+/* Section shared */
+.sb-section{padding:1.5rem 2.5rem;border-bottom:1px solid var(--g100)}
+.sb-section:last-child{border-bottom:none}
+.sb-section-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
+.sb-section-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;background:var(--gut-light);color:var(--gut-blue)}
+.sb-section-title{font-size:.95rem;font-weight:700;color:var(--g800)}
+.sb-section-subtitle{font-size:.75rem;color:var(--g400);font-weight:500}
+
+/* Metric rows */
+.metric-list{display:flex;flex-direction:column;gap:.75rem}
+.metric-item{background:var(--g50);border:1px solid var(--g200);border-radius:10px;padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem;transition:all .15s}
+.metric-item:hover{border-color:var(--g300);background:#fff}
+.metric-info{flex:1;min-width:0}
+.metric-name{font-size:.9rem;font-weight:600;color:var(--g800)}
+.metric-target{font-size:.75rem;color:var(--g500);margin-top:.15rem}
+.metric-controls{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.metric-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--g200);background:#fff;cursor:pointer;font-size:1.1rem;font-weight:700;color:var(--gut-blue);display:flex;align-items:center;justify-content:center;transition:all .15s;user-select:none}
+.metric-btn:hover{background:var(--gut-light);border-color:var(--gut-blue)}
+.metric-btn:active{transform:scale(.92)}
+.metric-btn.minus{color:var(--ampel-rot)}
+.metric-btn.minus:hover{background:#fde8ec;border-color:var(--ampel-rot)}
+.metric-value{min-width:56px;text-align:center;font-size:1.3rem;font-weight:800;color:var(--gut-blue);font-variant-numeric:tabular-nums}
+.metric-progress{width:100%;height:6px;background:var(--g200);border-radius:3px;margin-top:.5rem;overflow:hidden}
+.metric-progress-bar{height:100%;border-radius:3px;transition:width .3s ease;background:var(--gut-blue)}
+.metric-progress-bar.low{background:var(--ampel-rot)}
+.metric-progress-bar.mid{background:var(--ampel-gelb)}
+.metric-progress-bar.high{background:var(--ampel-gruen)}
+
+/* Checklist */
+.checklist{display:flex;flex-direction:column;gap:.5rem}
+.check-item{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem 1rem;background:var(--g50);border:1px solid var(--g200);border-radius:8px;cursor:pointer;transition:all .15s;user-select:none}
+.check-item:hover{border-color:var(--g300);background:#fff}
+.check-item.done{background:rgba(22,163,74,.04);border-color:rgba(22,163,74,.2)}
+.check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--g300);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;margin-top:1px}
+.check-item.done .check-box{background:var(--ampel-gruen);border-color:var(--ampel-gruen);color:#fff}
+.check-box svg{width:14px;height:14px;opacity:0;transition:opacity .15s}
+.check-item.done .check-box svg{opacity:1}
+.check-text{font-size:.88rem;color:var(--g700);line-height:1.5}
+.check-item.done .check-text{text-decoration:line-through;color:var(--g400)}
+
+/* Footer */
+.doc-footer{max-width:900px;margin:2rem auto;padding:1.5rem 2rem;text-align:center;color:var(--g400);font-size:.8rem}
+.doc-footer .divider{width:60px;height:2px;background:var(--g300);margin:0 auto 1rem;border-radius:1px}
+
+/* Fortschrittsanzeige */
+.progress-summary{display:flex;gap:1.5rem;padding:1rem 2.5rem;background:var(--g50);border-bottom:1px solid var(--g200);flex-wrap:wrap}
+.progress-stat{text-align:center;flex:1;min-width:120px}
+.progress-stat-value{font-size:1.5rem;font-weight:800;color:var(--gut-blue)}
+.progress-stat-label{font-size:.72rem;color:var(--g500);font-weight:500;text-transform:uppercase;letter-spacing:.5px}
+
+/* Responsive */
+@media(max-width:768px){.page-header{flex-direction:column;text-align:center;position:static}.page-header-left{flex-direction:column;gap:.5rem}.ampel-section{flex-direction:column;text-align:center}.metric-item{flex-direction:column;text-align:center}.metric-controls{justify-content:center}.progress-summary{flex-direction:column;gap:.75rem}}
+@media print{body{background:#fff}.page-header{position:static;padding:.75rem 1.5rem}.scoreboard-section{margin:1rem auto;padding:0 1rem}.scoreboard-card{box-shadow:none;border:1px solid #ddd}.back-link{display:none}.metric-btn{display:none}}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a href="../" class="back-link">&larr; &Uuml;bersicht</a>
+    <div class="page-header-title">Scoreboard <span>2026</span></div>
+  </div>
+  <div class="page-header-meta"><strong>G.U.T. BIRK Kempten</strong> &middot; Matchplan 2026</div>
+</div>
+
+<div class="scoreboard-section">
+  <div class="theme-header">
+    <div class="theme-number-badge">Scoreboard &middot; Thema 01</div>
+    <div class="theme-title">DB &ndash; Starkes Verkaufen</div>
+    <div class="theme-subtitle">Trainer: <strong>Andr&eacute; Kleefeld</strong> &middot; Ziel: DB-Steigerung um +1 Prozentpunkt</div>
+  </div>
+
+  <div class="scoreboard-card">
+
+    <!-- Ampel -->
+    <div class="ampel-section">
+      <div>
+        <div class="ampel-label">Gesamtstatus<br><span class="ampel-sublabel">Aktuelle Einsch&auml;tzung des Themenfortschritts</span></div>
+      </div>
+      <div class="ampel-buttons">
+        <button class="ampel-btn rot inactive" data-color="rot" onclick="setAmpel(this)" title="Kritisch">&nbsp;</button>
+        <button class="ampel-btn gelb inactive" data-color="gelb" onclick="setAmpel(this)" title="Achtung">&nbsp;</button>
+        <button class="ampel-btn gruen inactive" data-color="gruen" onclick="setAmpel(this)" title="Auf Kurs">&nbsp;</button>
+      </div>
+    </div>
+
+    <!-- Fortschritt -->
+    <div class="progress-summary">
+      <div class="progress-stat">
+        <div class="progress-stat-value" id="metrics-progress">0%</div>
+        <div class="progress-stat-label">Laufende Ziele</div>
+      </div>
+      <div class="progress-stat">
+        <div class="progress-stat-value" id="checks-progress">0 / 8</div>
+        <div class="progress-stat-label">Einmalaufw&auml;nde erledigt</div>
+      </div>
+    </div>
+
+    <!-- Messbare Kriterien -->
+    <div class="sb-section">
+      <div class="sb-section-header">
+        <div class="sb-section-icon">&#127919;</div>
+        <div>
+          <div class="sb-section-title">Messbare Kriterien</div>
+          <div class="sb-section-subtitle">Laufende Aktivit&auml;ten mit Zielwert &ndash; per +/&minus; aktualisieren</div>
+        </div>
+      </div>
+      <div class="metric-list">
+
+        <div class="metric-item" data-key="m1" data-target="12">
+          <div class="metric-info">
+            <div class="metric-name">DB-Turnier-Runden durchgef&uuml;hrt</div>
+            <div class="metric-target">Ziel: <strong>12</strong> (alle 4 Wochen)</div>
+            <div class="metric-progress"><div class="metric-progress-bar" style="width:0%"></div></div>
+          </div>
+          <div class="metric-controls">
+            <button class="metric-btn minus" onclick="changeMetric(this,-1)">&minus;</button>
+            <div class="metric-value">0</div>
+            <button class="metric-btn" onclick="changeMetric(this,1)">+</button>
+          </div>
+        </div>
+
+        <div class="metric-item" data-key="m2" data-target="48">
+          <div class="metric-info">
+            <div class="metric-name">W&ouml;chentliche Jour fixes (Andr&eacute;)</div>
+            <div class="metric-target">Ziel: <strong>48</strong> (w&ouml;chentlich)</div>
+            <div class="metric-progress"><div class="metric-progress-bar" style="width:0%"></div></div>
+          </div>
+          <div class="metric-controls">
+            <button class="metric-btn minus" onclick="changeMetric(this,-1)">&minus;</button>
+            <div class="metric-value">0</div>
+            <button class="metric-btn" onclick="changeMetric(this,1)">+</button>
+          </div>
+        </div>
+
+        <div class="metric-item" data-key="m3" data-target="12">
+          <div class="metric-info">
+            <div class="metric-name">DWH-Schulungen durchgef&uuml;hrt</div>
+            <div class="metric-target">Ziel: <strong>12</strong></div>
+            <div class="metric-progress"><div class="metric-progress-bar" style="width:0%"></div></div>
+          </div>
+          <div class="metric-controls">
+            <button class="metric-btn minus" onclick="changeMetric(this,-1)">&minus;</button>
+            <div class="metric-value">0</div>
+            <button class="metric-btn" onclick="changeMetric(this,1)">+</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Einmalaufwaende -->
+    <div class="sb-section">
+      <div class="sb-section-header">
+        <div class="sb-section-icon">&#9745;</div>
+        <div>
+          <div class="sb-section-title">Einmalaufw&auml;nde</div>
+          <div class="sb-section-subtitle">Einmalige Aufgaben &ndash; zum Abhaken klicken</div>
+        </div>
+      </div>
+      <div class="checklist">
+
+        <div class="check-item" data-key="c1" onclick="toggleCheck(this)">
+          <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
+          <div class="check-text"><strong>DB-Taskforce gr&uuml;nden</strong> &ndash; Auftakt 15.04.2026</div>
+        </div>
+
+        <div class="check-item" data-key="c2" onclick="toggleCheck(this)">
+          <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
+          <div class="check-text"><strong>DWH-Quoten auswerten</strong> &ndash; LA, LS, online</div>
+        </div>
+
+        <div class="check-item" data-key="c3" onclick="toggleCheck(this)">
+          <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
+          <div class="check-text"><strong>Kundenanalyse durchf&uuml;hren</strong> &ndash; Marke &amp; Exklusiv bei Kundenansprache forcieren</div>
+        </div>
+
+        <div class="check-item" data-key="c4" onclick="toggleCheck(this)">
+          <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
+          <div class="check-text"><strong>ABEX-Platzierungen pr&uuml;fen</strong></div>
+        </div>
+
+        <div class="check-item" data-key="c5" onclick="toggleCheck(this)">
+          <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
+          <div class="check-text"><strong>Konditionsanalyse</strong> &ndash; Nettopreise &amp; Rahmenangebote anpassen, E-Plus Kalkulation pr&uuml;fen</div>
+        </div>
+
+        <div class="check-item" data-key="c6" onclick="toggleCheck(this)">
+          <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
+          <div class="check-text"><strong>DB-Ranking erstellen</strong> &ndash; nach Produkten und Kunden</div>
+        </div>
+
+        <div class="check-item" data-key="c7" onclick="toggleCheck(this)">
+          <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
+          <div class="check-text"><strong>Servicebros&uuml;re erstellen</strong> &ndash; mit personenbezogenen Bildern</div>
+        </div>
+
+        <div class="check-item" data-key="c8" onclick="toggleCheck(this)">
+          <div class="check-box"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2.5 7 5.5 10.5 11.5 3.5"/></svg></div>
+          <div class="check-text"><strong>DWH-Vorlagen erstellen</strong></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="doc-footer">
+  <div class="divider"></div>
+  <p><strong>Matchplan 2026</strong> &ndash; Scoreboard G.U.T. BIRK Kempten</p>
+  <p>Klausurtagung 05.&ndash;06. M&auml;rz 2026 &middot; Moderation: Yannick Hildebrandt (Eggers und Partner)</p>
+</div>
+
+<script>
+var STORAGE_KEY = 'scoreboard-01-db';
+
+function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e) { return {}; }
+}
+function saveState(state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+// --- Ampel ---
+function setAmpel(btn) {
+    var color = btn.getAttribute('data-color');
+    var state = loadState();
+    var btns = document.querySelectorAll('.ampel-btn');
+    // Toggle: if already active, deactivate
+    if (state.ampel === color) {
+        state.ampel = null;
+        btns.forEach(function(b) { b.classList.remove('active'); b.classList.add('inactive'); });
+    } else {
+        state.ampel = color;
+        btns.forEach(function(b) {
+            if (b.getAttribute('data-color') === color) { b.classList.add('active'); b.classList.remove('inactive'); }
+            else { b.classList.remove('active'); b.classList.add('inactive'); }
+        });
+    }
+    saveState(state);
+}
+
+// --- Metrics ---
+function changeMetric(btn, delta) {
+    var item = btn.closest('.metric-item');
+    var key = item.getAttribute('data-key');
+    var target = parseInt(item.getAttribute('data-target'));
+    var state = loadState();
+    if (!state.metrics) state.metrics = {};
+    var current = (state.metrics[key] || 0) + delta;
+    if (current < 0) current = 0;
+    state.metrics[key] = current;
+    saveState(state);
+    renderMetric(item, current, target);
+    updateSummary();
+}
+
+function renderMetric(item, value, target) {
+    item.querySelector('.metric-value').textContent = value;
+    var pct = Math.min(100, Math.round((value / target) * 100));
+    var bar = item.querySelector('.metric-progress-bar');
+    bar.style.width = pct + '%';
+    bar.className = 'metric-progress-bar';
+    if (pct < 33) bar.classList.add('low');
+    else if (pct < 66) bar.classList.add('mid');
+    else bar.classList.add('high');
+}
+
+// --- Checks ---
+function toggleCheck(el) {
+    var key = el.getAttribute('data-key');
+    var state = loadState();
+    if (!state.checks) state.checks = {};
+    state.checks[key] = !state.checks[key];
+    el.classList.toggle('done', state.checks[key]);
+    saveState(state);
+    updateSummary();
+}
+
+// --- Summary ---
+function updateSummary() {
+    var state = loadState();
+    // Metrics
+    var items = document.querySelectorAll('.metric-item');
+    var totalPct = 0;
+    items.forEach(function(item) {
+        var key = item.getAttribute('data-key');
+        var target = parseInt(item.getAttribute('data-target'));
+        var val = (state.metrics && state.metrics[key]) || 0;
+        totalPct += Math.min(100, Math.round((val / target) * 100));
+    });
+    var avgPct = items.length ? Math.round(totalPct / items.length) : 0;
+    document.getElementById('metrics-progress').textContent = avgPct + '%';
+
+    // Checks
+    var checkItems = document.querySelectorAll('.check-item');
+    var doneCount = 0;
+    checkItems.forEach(function(ci) {
+        var key = ci.getAttribute('data-key');
+        if (state.checks && state.checks[key]) doneCount++;
+    });
+    document.getElementById('checks-progress').textContent = doneCount + ' / ' + checkItems.length;
+}
+
+// --- Init ---
+function init() {
+    var state = loadState();
+
+    // Ampel
+    if (state.ampel) {
+        document.querySelectorAll('.ampel-btn').forEach(function(b) {
+            if (b.getAttribute('data-color') === state.ampel) { b.classList.add('active'); b.classList.remove('inactive'); }
+            else { b.classList.remove('active'); b.classList.add('inactive'); }
+        });
+    }
+
+    // Metrics
+    document.querySelectorAll('.metric-item').forEach(function(item) {
+        var key = item.getAttribute('data-key');
+        var target = parseInt(item.getAttribute('data-target'));
+        var val = (state.metrics && state.metrics[key]) || 0;
+        renderMetric(item, val, target);
+    });
+
+    // Checks
+    document.querySelectorAll('.check-item').forEach(function(ci) {
+        var key = ci.getAttribute('data-key');
+        if (state.checks && state.checks[key]) ci.classList.add('done');
+    });
+
+    updateSummary();
+}
+
+init();
+</script>
+</body>
+</html>
