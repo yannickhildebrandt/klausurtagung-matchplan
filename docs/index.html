@@ -253,6 +253,23 @@
         .card-stat { font-size: 0.7rem; color: var(--g400); }
         .card-stat strong { color: var(--g600); font-weight: 700; }
         .card-cta { font-size: 0.75rem; font-weight: 700; color: var(--gut-blue); display: flex; align-items: center; gap: 0.3rem; }
+        .card-scoreboard {
+            padding: 0.55rem 1.5rem;
+            border-top: 1px solid var(--gut-light);
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--g500);
+            background: var(--g50);
+            transition: all .2s;
+            text-decoration: none;
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+        .card-scoreboard:hover { color: var(--gut-blue); background: var(--gut-light); }
+        .card-scoreboard .sb-icon { font-size: .85rem; }
+        .theme-card { text-decoration: none; color: inherit; }
 
         /* ====== 6 COLOR THEMES (CI-Palette) ====== */
         /* 1: G.U.T. Blau (Primär) */
@@ -333,7 +350,7 @@
         <p class="dashboard-label">W&auml;hle ein Themenfeld</p>
         <div class="card-grid">
 
-            <a href="Einzelsteckbriefe/01-DB-Starkes-Verkaufen.html" class="theme-card color-1">
+            <div class="theme-card color-1" onclick="location.href='Einzelsteckbriefe/01-DB-Starkes-Verkaufen.html'">
                 <div class="card-header">
                     <div class="card-number">01</div>
                     <div class="card-title">DB &ndash; Starkes Verkaufen</div>
@@ -347,17 +364,18 @@
                     <div class="card-highlights">
                         <span class="highlight-tag">Konditionen</span>
                         <span class="highlight-tag">Sortimente</span>
-                        <span class="highlight-tag">DLVH</span>
+                        <span class="highlight-tag">DWH</span>
                         <span class="highlight-tag">Mehrwert</span>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="card-stat"><strong>5</strong> Taktik-Ma&szlig;nahmen &middot; <strong>1</strong> Trainingsschritt</div>
-                    <div class="card-cta">&Ouml;ffnen &rarr;</div>
+                    <div class="card-stat"><strong>7</strong> Taktik-Ma&szlig;nahmen &middot; <strong>1</strong> Trainingsschritt</div>
+                    <div class="card-cta">Steckbrief &rarr;</div>
                 </div>
-            </a>
+                <a href="Scoreboards/01-DB-Starkes-Verkaufen.html" class="card-scoreboard" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand &rarr;</a>
+            </div>
 
-            <a href="Einzelsteckbriefe/02-Digital-Sales.html" class="theme-card color-2">
+            <div class="theme-card color-2" onclick="location.href='Einzelsteckbriefe/02-Digital-Sales.html'">
                 <div class="card-header">
                     <div class="card-number">02</div>
                     <div class="card-title">Digital Sales</div>
@@ -372,16 +390,17 @@
                         <span class="highlight-tag">Newsletter</span>
                         <span class="highlight-tag">CRM</span>
                         <span class="highlight-tag">Kampagnen</span>
-                        <span class="highlight-tag">OP-Schulung</span>
+                        <span class="highlight-tag">Kundenerziehung</span>
                     </div>
                 </div>
                 <div class="card-footer">
                     <div class="card-stat"><strong>8</strong> Taktik-Ma&szlig;nahmen &middot; <strong>5</strong> Trainingsschritte</div>
-                    <div class="card-cta">&Ouml;ffnen &rarr;</div>
+                    <div class="card-cta">Steckbrief &rarr;</div>
                 </div>
-            </a>
+                <a href="Scoreboards/02-Digital-Sales.html" class="card-scoreboard" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand &rarr;</a>
+            </div>
 
-            <a href="Einzelsteckbriefe/03-ELEMENTS-Vertriebskonzept.html" class="theme-card color-3">
+            <div class="theme-card color-3" onclick="location.href='Einzelsteckbriefe/03-ELEMENTS-Vertriebskonzept.html'">
                 <div class="card-header">
                     <div class="card-number">03</div>
                     <div class="card-title">ELEMENTS Vertriebskonzept</div>
@@ -393,18 +412,19 @@
                         <div><div class="card-goal-label">Ergebnisziel</div><div class="card-goal-value">Umsatz +10%</div></div>
                     </div>
                     <div class="card-highlights">
-                        <span class="highlight-tag">Neukundengewinnung</span>
-                        <span class="highlight-tag">Begehungen</span>
+                        <span class="highlight-tag">Tandemtermine</span>
+                        <span class="highlight-tag">Stammtisch</span>
                         <span class="highlight-tag">Auftrags-Quote</span>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="card-stat"><strong>6</strong> Taktik-Ma&szlig;nahmen &middot; <strong>4</strong> Trainingsschritte</div>
-                    <div class="card-cta">&Ouml;ffnen &rarr;</div>
+                    <div class="card-stat"><strong>8</strong> Taktik-Ma&szlig;nahmen &middot; <strong>5</strong> Trainingsschritte</div>
+                    <div class="card-cta">Steckbrief &rarr;</div>
                 </div>
-            </a>
+                <a href="Scoreboards/03-ELEMENTS-Vertriebskonzept.html" class="card-scoreboard" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand &rarr;</a>
+            </div>
 
-            <a href="Einzelsteckbriefe/04-Neue-VAM-Gebiete.html" class="theme-card color-4">
+            <div class="theme-card color-4" onclick="location.href='Einzelsteckbriefe/04-Neue-VAM-Gebiete.html'">
                 <div class="card-header">
                     <div class="card-number">04</div>
                     <div class="card-title">Neue VAM-Gebiete</div>
@@ -422,12 +442,13 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="card-stat"><strong>6</strong> Taktik-Ma&szlig;nahmen &middot; <strong>3</strong> Trainingsschritte</div>
-                    <div class="card-cta">&Ouml;ffnen &rarr;</div>
+                    <div class="card-stat"><strong>11</strong> Taktik-Ma&szlig;nahmen &middot; <strong>6</strong> Trainingsschritte</div>
+                    <div class="card-cta">Steckbrief &rarr;</div>
                 </div>
-            </a>
+                <a href="Scoreboards/04-Neue-VAM-Gebiete.html" class="card-scoreboard" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand &rarr;</a>
+            </div>
 
-            <a href="Einzelsteckbriefe/05-Vermarktung-Waermeerzeuger.html" class="theme-card color-5">
+            <div class="theme-card color-5" onclick="location.href='Einzelsteckbriefe/05-Vermarktung-Waermeerzeuger.html'">
                 <div class="card-header">
                     <div class="card-number">05</div>
                     <div class="card-title">Vermarktung W&auml;rmeerzeuger</div>
@@ -440,18 +461,19 @@
                     </div>
                     <div class="card-highlights">
                         <span class="highlight-tag">ETA</span>
-                        <span class="highlight-tag">TVK</span>
-                        <span class="highlight-tag">Service</span>
-                        <span class="highlight-tag">W&auml;rmepumpen</span>
+                        <span class="highlight-tag">Samsung</span>
+                        <span class="highlight-tag">Fr&ouml;hling</span>
+                        <span class="highlight-tag">Checkliste</span>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="card-stat"><strong>10</strong> Taktik-Ma&szlig;nahmen &middot; <strong>5</strong> Trainingsschritte</div>
-                    <div class="card-cta">&Ouml;ffnen &rarr;</div>
+                    <div class="card-stat"><strong>7</strong> Taktik-Ma&szlig;nahmen &middot; <strong>6</strong> Trainingsschritte</div>
+                    <div class="card-cta">Steckbrief &rarr;</div>
                 </div>
-            </a>
+                <a href="Scoreboards/05-Vermarktung-Waermeerzeuger.html" class="card-scoreboard" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand &rarr;</a>
+            </div>
 
-            <a href="Einzelsteckbriefe/06-Vertrieb-im-ZVK.html" class="theme-card color-6">
+            <div class="theme-card color-6" onclick="location.href='Einzelsteckbriefe/06-Vertrieb-im-ZVK.html'">
                 <div class="card-header">
                     <div class="card-number">06</div>
                     <div class="card-title">Erfolgreicher Vertrieb im ZVK</div>
@@ -463,16 +485,17 @@
                         <div><div class="card-goal-label">Ergebnisziel</div><div class="card-goal-value">Vom Abwickler zum Verk&auml;ufer</div></div>
                     </div>
                     <div class="card-highlights">
-                        <span class="highlight-tag">Online-Quote</span>
-                        <span class="highlight-tag">Umschlag</span>
-                        <span class="highlight-tag">Digi-Coach</span>
+                        <span class="highlight-tag">Querverkauf</span>
+                        <span class="highlight-tag">CRM</span>
+                        <span class="highlight-tag">DigiCoach</span>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="card-stat"><strong>3</strong> Taktik-Ma&szlig;nahmen &middot; <strong>3</strong> Trainingsschritte</div>
-                    <div class="card-cta">&Ouml;ffnen &rarr;</div>
+                    <div class="card-stat"><strong>6</strong> Taktik-Ma&szlig;nahmen &middot; <strong>7</strong> Trainingsschritte</div>
+                    <div class="card-cta">Steckbrief &rarr;</div>
                 </div>
-            </a>
+                <a href="Scoreboards/06-Vertrieb-im-ZVK.html" class="card-scoreboard" onclick="event.stopPropagation()"><span class="sb-icon">&#128202;</span> Aktueller Stand &rarr;</a>
+            </div>
 
         </div>
     </div>
